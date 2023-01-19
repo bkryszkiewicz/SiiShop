@@ -1,12 +1,111 @@
+@import './scss-addons/functions.scss';
+
+$primary-color: #6d6f73;
+
+$primary-font: 'Poppins', sans-serif;
+
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
-ion-icon {
-font-size:40px;
+
+body {
+    font-family: 'Poppins';
+    padding: 35px 150px;
+    font-size: convertPxToRem(16);
 }
 
+ion-icon {
+font-size:convertPxToRem(40);
+}
 .main-header {
+    color:#6d6f73;
+    font-size: convertPxToRem(32);
     text-transform: uppercase;
+}
+.centered-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.product-picture{
+width: 200px;
+height: 200px;
+}
+.store{
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: 2fr 1fr;
+    grid-row: 1fr;
+    gap: convertPxToRem(20);
+
+    &__products {
+        color:#6d6f73;
+        background-color: rgb(255, 255, 255);
+        outline: 1px solid $primary-color;       
+    }
+    &__header{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        outline: 1px solid $primary-color;
+        padding: 0px 25px; 
+
+        &--cart{
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 1rem;
+            outline: 1px solid $primary-color;
+            padding: 0px 25px; 
+        }  
+    }
+    &__offer {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto;
+        gap: 30px 30px;
+        padding: 30px 30px;
+    }
+    &__cart {
+        color: #6d6f73;
+        background-color: aquamarine;
+        outline: 1px solid $primary-color;
+    }
+}
+.product{
+    outline: 1px solid $primary-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &__info{
+        padding: 0px 20px;
+    }
+    &__name {
+        font-size: convertPxToRem(20);
+    }
+    &__manufacturer{
+        font-size: convertPxToRem(18);    
+    }
+    &__description{ 
+    }
+    &__menu{
+        display: grid;
+        grid-template-columns: 2.5fr 1fr 0.5fr 1fr;
+        grid-template-rows: 1fr;
+        outline: 1px solid $primary-color;
+    }
+    &__buttons{
+        display: grid;
+
+        &--amount{
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        &--cart-btn{
+            cursor: pointer;
+        }
+    }
 }
