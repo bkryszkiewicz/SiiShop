@@ -13,7 +13,7 @@ $primary-font: 'Poppins', sans-serif;
 body {
     font-family: 'Poppins';
     padding: 35px 150px;
-    font-size: convertPxToRem(16);
+    font-size: convertPxToRem(14);
 }
 
 ion-icon {
@@ -30,8 +30,8 @@ font-size:convertPxToRem(40);
     justify-content: center;
 }
 .product-picture{
-width: 200px;
-height: 200px;
+width: 100px;
+height: 100px;
 }
 .store{
     display: grid;
@@ -81,15 +81,22 @@ height: 200px;
     justify-content: space-between;
 
     &__info{
-        padding: 0px 20px;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 10px;
+        padding: 0px 10px;
     }
     &__name {
-        font-size: convertPxToRem(20);
+        font-size: convertPxToRem(16);
+        margin: 15px 0px 0px 0px;
     }
     &__manufacturer{
-        font-size: convertPxToRem(18);    
+        font-size: convertPxToRem(14);
+        margin:0px;
+        font-style: italic;
     }
-    &__description{ 
+    &__description{
+        margin: 0px 15px 15px 15px;
     }
     &__menu{
         display: grid;
@@ -97,12 +104,17 @@ height: 200px;
         grid-template-rows: 1fr;
         outline: 1px solid $primary-color;
     }
+    &__menu div:nth-child(1) {
+        outline: 1px solid $primary-color;
+    }
     &__buttons{
         display: grid;
-
+        
         &--amount{
             padding: 5px 10px;
             cursor: pointer;
+            outline: 1px solid $primary-color;
+            border: none;
         }
         &--cart-btn{
             cursor: pointer;

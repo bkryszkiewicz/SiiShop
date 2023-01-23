@@ -7,7 +7,7 @@
 body {
   font-family: "Poppins";
   padding: 35px 150px;
-  font-size: 1rem;
+  font-size: 0.875rem;
 }
 
 ion-icon {
@@ -27,8 +27,8 @@ ion-icon {
 }
 
 .product-picture {
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
 }
 
 .store {
@@ -78,18 +78,30 @@ ion-icon {
   justify-content: space-between;
 }
 .product__info {
-  padding: 0px 20px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+  padding: 0px 10px;
 }
 .product__name {
-  font-size: 1.25rem;
+  font-size: 1rem;
+  margin: 15px 0px 0px 0px;
 }
 .product__manufacturer {
-  font-size: 1.125rem;
+  font-size: 0.875rem;
+  margin: 0px;
+  font-style: italic;
+}
+.product__description {
+  margin: 0px 15px 15px 15px;
 }
 .product__menu {
   display: grid;
   grid-template-columns: 2.5fr 1fr 0.5fr 1fr;
   grid-template-rows: 1fr;
+  outline: 1px solid #6d6f73;
+}
+.product__menu div:nth-child(1) {
   outline: 1px solid #6d6f73;
 }
 .product__buttons {
@@ -98,6 +110,8 @@ ion-icon {
 .product__buttons--amount {
   padding: 5px 10px;
   cursor: pointer;
+  outline: 1px solid #6d6f73;
+  border: none;
 }
 .product__buttons--cart-btn {
   cursor: pointer;
