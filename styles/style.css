@@ -107,7 +107,7 @@ ion-icon {
 .product__buttons {
   display: grid;
 }
-.product__buttons--amount {
+.product__buttons--quantity {
   padding: 5px 10px;
   cursor: pointer;
   outline: 1px solid #6d6f73;
