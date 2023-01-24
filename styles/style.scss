@@ -121,3 +121,26 @@ height: 100px;
         }
     }
 }
+
+.cart {
+    &__offer {
+    background-color: antiquewhite;
+}
+    &__offer--container {
+        display: grid;
+        grid-template-columns: 2.5fr 1fr 0.5fr 1fr;
+        grid-template-rows: 1fr;
+        outline: 1px solid $primary-color;
+
+    }
+    &__footer {
+        background-color: azure;
+    }
+}
+
+.product{
+    &__buttons{
+        font-size: 50px;
+
+    }
+}

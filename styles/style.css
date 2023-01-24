@@ -115,4 +115,21 @@ ion-icon {
 }
 .product__buttons--cart-btn {
   cursor: pointer;
+}
+
+.cart__offer {
+  background-color: antiquewhite;
+}
+.cart__offer--container {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 0.5fr 1fr;
+  grid-template-rows: 1fr;
+  outline: 1px solid #6d6f73;
+}
+.cart__footer {
+  background-color: azure;
+}
+
+.product__buttons {
+  font-size: 50px;
 }/*# sourceMappingURL=style.css.map */

@@ -1,4 +1,5 @@
 
+// ARRAYS
 const shopItemsData = [
     {
         id:1,
@@ -64,15 +65,18 @@ const shopItemsData = [
         price: 12,
         image: "./img/img3.jpg",
     },
-]
+];
 let basket = [];
 let cart =[];
+// DOM
+let storeOffer = document.querySelector(".store__offer");
+let cartOffer = document.querySelector(".cart__offer");
+
 //SHOP PART
-function renderProducts() { //zamienić na forEach
-  
+function renderProducts() { 
     shopItemsData.forEach((product) => {
         let {id, name, image, manufacturer, description, price} = product;
-        document.querySelector(".store__offer").innerHTML +=`<div class="product" id="product-id-${id}">       
+        storeOffer.innerHTML +=`<div class="product" id="product-id-${id}">       
             <div class="product__info" >
             <img src="${image}" class="product-picture"/>
             <div>
@@ -95,15 +99,15 @@ function renderProducts() { //zamienić na forEach
             </div>
             ` })
         }
-    renderProducts();
+
+renderProducts();
 
     function increment(id) {
         let search = basket.find((product) =>
-            product.id === id,
-            );
+            product.id === id);
          
         if(search===undefined) {
-            const item = shopItemsData.find((product) =>    product.id === id);
+            const item = shopItemsData.find((product) => product.id === id);
             basket.push({
             ...item,
             id: id,
@@ -111,10 +115,8 @@ function renderProducts() { //zamienić na forEach
                 });
         } else {
             search.numberOfUnits += 1;
-        }
-        
-        update(id)
-       
+        }        
+        update(id)    
     };
 
     function decrement(id){
@@ -125,6 +127,7 @@ function renderProducts() { //zamienić na forEach
         else {
             search.numberOfUnits -= 1;
         }
+        // basket = basket.filter
         update(id)
     };
 
@@ -137,23 +140,53 @@ function renderProducts() { //zamienić na forEach
 
 
     function addToCart(id) {
-        if (cart.some((item)=> item.id===id)){
-         
-   
-        } else {
-            const item = basket.find((product) =>    product.id === id);
-            cart.push({
-                ...item,
-            })
-            console.log(cart);
-        }
-    }
+        
+        let search = cart.find((product) =>
+            product.id === id,);
+        let item = basket.find((product) =>
+            product.id === id);
 
+        if (item.numberOfUnits === 0) return;
+        else if(search===undefined) {
+            cart.push({
+            ...item,
+                });
+        renderCartItems(id);
+        } else {
+            search.numberOfUnits = search.numberOfUnits + item.numberOfUnits;
+            
+        }
+        console.log(cart);
+    }
 
 // CART PART
 
-// function renderCartItems {
-//     cart.forEach((product)=>{
-//         let {manufacturer} = product;
-//     })
-// }
+    function renderCartItems(id) {
+    cart.forEach((product) => {
+        let {name, manufacturer, price, numberOfUnits} = product;
+        cartOffer.innerHTML += `<div class="cart__offer--container">
+        <input type="checkbox"/>
+        <div>${manufacturer}</div>
+    <div class="cart_product">
+    <input type="checkbox"/>
+    <div class="product__name">${name}</div>
+    <div class="product__price">${price}</div>
+    <div class="quantity">${numberOfUnits}</div>
+    <div class="product__buttons">
+        <button class="product__buttons--quantity" onClick="increment()">+</button>
+        <button class="product__buttons--quantity" onClick="decrement()">-</button>
+    </div>
+<div class="cart__delete">obrazek</div>
+</div>
+
+<div class="cart_offer--footer"></div>
+
+</div>
+`})
+}
+
+
+// jeśli manufacturer z basketa === manufakturer który jest w cart
+// to dodaj tam gdzie już istnieje
+
+// jeśli nie ma takiego manu w cartcie to stworz nowa OL
