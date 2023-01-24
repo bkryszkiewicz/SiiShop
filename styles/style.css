@@ -35,12 +35,12 @@ ion-icon {
   display: grid;
   box-sizing: border-box;
   grid-template-columns: 2fr 1fr;
-  grid-row: 1fr;
+  align-items: baseline;
   gap: 1.25rem;
 }
 .store__products {
   color: #6d6f73;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   outline: 1px solid #6d6f73;
 }
 .store__header {
@@ -67,7 +67,7 @@ ion-icon {
 }
 .store__cart {
   color: #6d6f73;
-  background-color: aquamarine;
+  background-color: white;
   outline: 1px solid #6d6f73;
 }
 
@@ -82,6 +82,9 @@ ion-icon {
   grid-template-columns: 1fr 2fr;
   gap: 10px;
   padding: 0px 10px;
+}
+.product__data {
+  display: grid;
 }
 .product__name {
   font-size: 1rem;
@@ -117,19 +120,59 @@ ion-icon {
   cursor: pointer;
 }
 
-.cart__offer {
-  background-color: antiquewhite;
+.incart {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  align-items: center;
 }
-.cart__offer--container {
+.incart__grid {
   display: grid;
-  grid-template-columns: 2.5fr 1fr 0.5fr 1fr;
-  grid-template-rows: 1fr;
-  outline: 1px solid #6d6f73;
+  grid-template-columns: 5fr 1fr;
+  gap: 5px;
 }
-.cart__footer {
-  background-color: azure;
+.incart__manu {
+  display: flex;
+  flex-direction: column;
 }
-
-.product__buttons {
-  font-size: 50px;
+.incart__manufacturer {
+  font-size: 0.875rem;
+  font-style: italic;
+  margin: 0px;
+}
+.incart__offer--container {
+  max-height: 400px;
+  overflow-y: auto;
+  margin: 10px;
+  outline: 1px solid black;
+}
+.incart__product {
+  background-color: pink;
+  display: grid;
+  grid-template-columns: 0.5fr 3fr 1fr 0.25fr 0.25fr;
+  outline: 1px solid black;
+  gap: 10px;
+  align-items: center;
+  margin-inline: 10px;
+}
+.incart__buttons {
+  display: grid;
+  justify-content: end;
+}
+.incart__footer {
+  background-color: aliceblue;
+  font-size: 1rem;
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  outline: 1px solid black;
+  margin-top: 10px;
+}
+.incart__delete {
+  background-color: pink;
+  outline: 1px solid black;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }/*# sourceMappingURL=style.css.map */

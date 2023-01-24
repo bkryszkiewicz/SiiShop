@@ -30,12 +30,51 @@
         <h1 class="main-header">The cart</h1>
     </div>
 
-    <div class="cart__offer">
           <!-- renderCartItems() -->
+          <div class="incart__offer--container">
+            <div class="incart__manu">
+            <div class="incart">
+                <input type="checkbox"/>
+                <h4 class="incart__manufacturer">${manufacturer}</h4>
+                </div>
+            <div class="incart__grid">
+            <div class="incart__product">
+            <input type="checkbox"/>
+            <div class="incart__name">${name}</div>
+            <div class="incart__price">${price}$</div>
+            <div class="incart__quantity">${numberOfUnits}</div>
+            <div class="incart__buttons">
+                <button class="product__buttons--quantity" onClick="increment()">+</button>
+                <button class="product__buttons--quantity" onClick="decrement()">-</button>
+            </div>
+        </div>
+        <div class="incart__delete"><ion-icon name="trash-outline"></ion-icon></div>
+
+        
+            <div class="incart__product">
+            <input type="checkbox"/>
+            <div class="incart__name">${name}</div>
+            <div class="incart__price">${price}$</div>
+            <div class="incart__quantity">${numberOfUnits}</div>
+            <div class="incart__buttons">
+                <button class="product__buttons--quantity" onClick="increment()">+</button>
+                <button class="product__buttons--quantity" onClick="decrement()">-</button>
+            </div>
+        </div>
+        <div class="incart__delete"><ion-icon name="trash-outline"></ion-icon></div>
+
+        
+        </div>
+        </div>
+        <div class="incart__footer">Total: </div>
+         <!-- end of product  -->
     </div>
-    <div class="cart__footer">Grand Total: </div>
-    </div>
-    </div>
+
+ 
+
+<div class="incart__footer">Grand Total: </div>
+</div>
+  
 
 <!-- IKONY -->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

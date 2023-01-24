@@ -1,7 +1,7 @@
 @import './scss-addons/functions.scss';
 
 $primary-color: #6d6f73;
-
+$background-color: #FFFF;
 $primary-font: 'Poppins', sans-serif;
 
 *,
@@ -37,12 +37,12 @@ height: 100px;
     display: grid;
     box-sizing: border-box;
     grid-template-columns: 2fr 1fr;
-    grid-row: 1fr;
+    align-items: baseline;
     gap: convertPxToRem(20);
 
     &__products {
         color:#6d6f73;
-        background-color: rgb(255, 255, 255);
+        background-color: $background-color;
         outline: 1px solid $primary-color;       
     }
     &__header{
@@ -70,7 +70,7 @@ height: 100px;
     }
     &__cart {
         color: #6d6f73;
-        background-color: aquamarine;
+        background-color: $background-color;
         outline: 1px solid $primary-color;
     }
 }
@@ -85,6 +85,9 @@ height: 100px;
         grid-template-columns: 1fr 2fr;
         gap: 10px;
         padding: 0px 10px;
+    }
+    &__data{
+        display: grid;
     }
     &__name {
         font-size: convertPxToRem(16);
@@ -109,6 +112,8 @@ height: 100px;
     }
     &__buttons{
         display: grid;
+
+        
         
         &--quantity{
             padding: 5px 10px;
@@ -121,26 +126,65 @@ height: 100px;
         }
     }
 }
+// NIEŁAD
+.incart {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    align-items: center;
 
-.cart {
-    &__offer {
-    background-color: antiquewhite;
-}
-    &__offer--container {
+    &__grid{
         display: grid;
-        grid-template-columns: 2.5fr 1fr 0.5fr 1fr;
-        grid-template-rows: 1fr;
-        outline: 1px solid $primary-color;
+        grid-template-columns: 5fr 1fr;
+        gap: 5px;
 
     }
-    &__footer {
-        background-color: azure;
+    &__manu{
+        display: flex;
+        flex-direction: column;
     }
+    &__manufacturer{
+        font-size: convertPxToRem(14);
+        font-style: italic;
+        margin: 0px;
+    }
+    &__offer--container{
+        max-height: 400px;
+        overflow-y: auto;
+        margin: 10px;
+        outline: 1px solid black;
+    }
+    &__product{
+    background-color: pink;
+    display: grid;
+    grid-template-columns: 0.5fr 3fr 1fr 0.25fr 0.25fr;
+    outline: 1px solid black;
+    gap: 10px;
+    align-items: center;
+    margin-inline: 10px;
 }
 
-.product{
     &__buttons{
-        font-size: 50px;
+    display: grid;
+    justify-content: end;
+}
 
-    }
+    &__footer {
+    background-color: aliceblue;
+    font-size: convertPxToRem(16);
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    outline: 1px solid black;
+    margin-top: 10px;
+
+}
+&__delete{
+    background-color: pink;
+    outline: 1px solid black;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 }
