@@ -311,10 +311,44 @@ renderProducts();
     function update(id) {
         let search = basket.find((product) =>
         product.id === id);
+
         document.getElementById(id).innerHTML = search.numberOfUnits;
         console.log(basket);
     };
+// BUTTON CART
 
+function incrementCart(id) {
+    let search = cart.find((product) =>
+    product.id === id);
+    
+    search.numberOfUnits += 1;
+    search.finalTotal = search.numberOfUnits * search.price;
+
+    updateCart(id)    
+};
+
+function decrementCart(id){
+    let search = cart.find((product) =>
+    product.id === id);
+
+    if (search.numberOfUnits===0) return;
+    else{
+    search.numberOfUnits -= 1;};
+
+    search.finalTotal = search.numberOfUnits * search.price;
+
+    updateCart(id)
+};
+
+function updateCart(id) {
+    let search = cart.find((product) =>
+    product.id === id);
+
+    document.getElementById("num"+search.id).innerHTML = search.numberOfUnits;
+    document.getElementById("total"+search.id).innerHTML = "Total: " + search.finalTotal +" $";
+    console.log(cart);
+
+};
 
     function addToCart(id) {
         
@@ -324,14 +358,20 @@ renderProducts();
             product.id === id);
 
         if (item.numberOfUnits === 0) return;
+        //check if exist in cart
         else if(search===undefined) {
             cart.push({
             ...item,
+            finalTotal: item.price*item.numberOfUnits,
                 });
         renderCartItems(id);
         } else {
             search.numberOfUnits = search.numberOfUnits + item.numberOfUnits;
-            renderCartItems(id);
+            search.finalTotal = search.numberOfUnits * search.price;
+
+            // search.finalTotal = search.finalTotal + item.price*item.numberOfUnits,
+        //update html
+        renderCartItems(id);
         }
         console.log(cart);
     }
@@ -339,8 +379,12 @@ renderProducts();
 // CART PART
 
     function renderCartItems(id) {
+        cartOffer.innerHTML="";
+
+        // jesli manufacturer to dodaj tylko div z produktem
     cart.forEach((product) => {
-        let {name, manufacturer, price, numberOfUnits} = product;
+        
+        let {id, name, manufacturer, price, numberOfUnits, finalTotal} = product;
         cartOffer.innerHTML += `  <div class="incart__manu">
         <div class="incart">
             <input type="checkbox"/>
@@ -351,17 +395,18 @@ renderProducts();
         <input type="checkbox"/>
         <div class="incart__name">${name}</div>
         <div class="incart__price">${price}$</div>
-        <div class="incart__quantity">${numberOfUnits}</div>
+        <div class="incart__quantity" id="num${id}">${numberOfUnits}</div>
         <div class="incart__buttons">
-        <button class="product__buttons--quantity" onClick="increment()">+</button>
-        <button class="product__buttons--quantity" onClick="decrement()">-</button>
+        <button class="product__buttons--quantity" onClick="incrementCart(${id})">+</button>
+        <button class="product__buttons--quantity" onClick="decrementCart(${id})">-</button>
         </div>
     </div>
     <div class="incart__delete"><ion-icon name="trash-outline"></ion-icon></div>
     
     </div>
     </div>
-    <div class="incart__footer">Total: </div>
+    <div class="incart__footer" id="total${id}">Total: ${finalTotal} $</div>
+  
 `})
 }
 
