@@ -364,21 +364,24 @@ function updateCart(id) {
             ...item,
             finalTotal: item.price*item.numberOfUnits,
                 });
-        renderCartItems(id);
+        renderCartItems();
         } else {
             search.numberOfUnits = search.numberOfUnits + item.numberOfUnits;
             search.finalTotal = search.numberOfUnits * search.price;
 
-            // search.finalTotal = search.finalTotal + item.price*item.numberOfUnits,
-        //update html
-        renderCartItems(id);
+        renderCartItems();
         }
         console.log(cart);
+    }
+    function deleteItem(id) {
+        cart = cart.filter((product) =>
+        product.id !== id);
+        renderCartItems()
     }
 
 // CART PART
 
-    function renderCartItems(id) {
+    function renderCartItems() {
         cartOffer.innerHTML="";
 
         // jesli manufacturer to dodaj tylko div z produktem
@@ -401,7 +404,7 @@ function updateCart(id) {
         <button class="product__buttons--quantity" onClick="decrementCart(${id})">-</button>
         </div>
     </div>
-    <div class="incart__delete"><ion-icon name="trash-outline"></ion-icon></div>
+    <div class="incart__delete" onClick="deleteItem(${id})"><ion-icon name="trash-outline"></ion-icon></div>
     
     </div>
     </div>
