@@ -291,6 +291,7 @@ renderProducts();
                 });
         } else {
             search.numberOfUnits += 1;
+
         }        
         update(id)    
     };
@@ -303,7 +304,7 @@ renderProducts();
         else {
             search.numberOfUnits -= 1;
         }
-        // basket = basket.filter
+   
         update(id)
     };
 
@@ -330,7 +331,7 @@ renderProducts();
         renderCartItems(id);
         } else {
             search.numberOfUnits = search.numberOfUnits + item.numberOfUnits;
-            
+            renderCartItems(id);
         }
         console.log(cart);
     }
