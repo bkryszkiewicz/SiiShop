@@ -20,7 +20,7 @@ ion-icon {
   text-transform: uppercase;
 }
 
-.centered-item {
+.centered-item, .incart__delete, .incart__footer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,9 +33,9 @@ ion-icon {
 
 .store {
   display: grid;
+  align-items: baseline;
   box-sizing: border-box;
   grid-template-columns: 2fr 1fr;
-  align-items: baseline;
   gap: 1.25rem;
 }
 .store__products {
@@ -122,9 +122,9 @@ ion-icon {
 
 .incart {
   display: flex;
+  align-items: center;
   gap: 10px;
   padding: 10px;
-  align-items: center;
 }
 .incart__grid {
   display: grid;
@@ -149,10 +149,10 @@ ion-icon {
 .incart__product {
   background-color: pink;
   display: grid;
+  align-items: center;
   grid-template-columns: 0.5fr 3fr 1fr 0.25fr 0.25fr;
   outline: 1px solid black;
   gap: 10px;
-  align-items: center;
   margin-inline: 10px;
 }
 .incart__buttons {
@@ -162,9 +162,6 @@ ion-icon {
 .incart__footer {
   background-color: aliceblue;
   font-size: 1rem;
-  display: flex;
-  justify-items: center;
-  justify-content: center;
   outline: 1px solid black;
   margin-top: 10px;
 }
@@ -172,7 +169,5 @@ ion-icon {
   background-color: pink;
   outline: 1px solid black;
   margin-right: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */
