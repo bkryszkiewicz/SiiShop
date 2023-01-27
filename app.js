@@ -316,7 +316,7 @@ function update(id) {
         product.id === id);
 
     document.getElementById(id).innerHTML = search.numberOfUnits;
-    console.log(basket);
+   
 };
 
 // QUANITITY CART
@@ -354,7 +354,7 @@ function updateCart(id) {
     document.getElementById("num" + search.id).innerHTML = search.numberOfUnits;
   
     calculation();
-    console.log(cart);
+    // console.log(cart);
 
 };
 
@@ -376,8 +376,9 @@ function addToCart(id) {
         manu.forEach((element) =>{
             if(!uniqueManu.includes(element)) {uniqueManu.push(element)}
 
-        }); console.log(uniqueManu);
-        console.log(cart);
+        }); 
+        // console.log(uniqueManu);
+        // console.log(cart);
 
         renderCartItems(id);
     } else {
@@ -393,7 +394,7 @@ function deleteItem(id) {
     cart = cart.filter((product) =>
         product.id !== id);
 
-    console.log(cart);
+    // console.log(cart);
    
     renderCartItems(id)
     calculation()
@@ -414,6 +415,11 @@ function renderCartItems(id) {
         </div> 
         <div id="${manu}"></div>
         <div class="incart__footer" id="total${manu}">Total: $</div>`
+
+        let arrmanu = cart.filter((x)=> x.manufacturer===manu)
+        let manuamout = arrmanu.map((x) => x.finalTotal).reduce((x, y)=>x+y,0);
+        document.getElementById("total"+manu).innerHTML = "Total: "+manuamout+"$";
+
     })
     cart.forEach((product) => {
         let { id, name, manufacturer, price, numberOfUnits} = product;
@@ -435,16 +441,12 @@ document.getElementById(manufacturer).innerHTML += `
 </div>
 </div>` })
 calculation()
-// calcManu(id)
+
 ;
 
 };
 
-// function calcManu(id){
-//     let search = cart.find((product) =>
-//         product.id === id,);
-//     console.log(search.finalTotal);
-// }
+
 function calculation(){
 
 let amount = cart.map((x) => x.finalTotal).reduce((x, y)=>x+y,0);
