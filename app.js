@@ -352,8 +352,10 @@ function updateCart(id) {
         product.id === id);
 
     document.getElementById("num" + search.id).innerHTML = search.numberOfUnits;
-  
-    calculation();
+
+ 
+    // calculation();
+    renderCartItems();
     // console.log(cart);
 
 };
@@ -365,39 +367,35 @@ function addToCart(id) {
         product.id === id);
 
     if (item.numberOfUnits === 0) return;
-    //check if exist in cart
     else if (search === undefined) {
         cart.push({
             ...item,
             finalTotal: item.price * item.numberOfUnits,
         })
+
         manu.push(item.manufacturer)
-       
         manu.forEach((element) =>{
             if(!uniqueManu.includes(element)) {uniqueManu.push(element)}
-
         }); 
         // console.log(uniqueManu);
         // console.log(cart);
-
         renderCartItems(id);
     } else {
         search.numberOfUnits = search.numberOfUnits + item.numberOfUnits;
         search.finalTotal = search.numberOfUnits * search.price;
 
         renderCartItems(id);
-    }
-    ;
-    
+    };
 }
+
 function deleteItem(id) {
     cart = cart.filter((product) =>
         product.id !== id);
 
     // console.log(cart);
    
-    renderCartItems(id)
-    calculation()
+    renderCartItems()
+    // calculation()
 }
 
 // CART PART
@@ -407,7 +405,7 @@ function renderCartItems(id) {
     cartOffer.innerHTML = "";
     uniqueManu.forEach((manu)=>{
 
-        cartOffer.innerHTML += `  <div class="incart__manu">
+        cartOffer.innerHTML += `  <div class="incart__manu" id="incart${manu}">
         <div class="incart">
             <input type="checkbox" id="optionAll${manu}" onClick="checkAll(this)"/>
             <h4 class="incart__manufacturer" >${manu}</h4>
@@ -416,11 +414,17 @@ function renderCartItems(id) {
         <div id="${manu}"></div>
         <div class="incart__footer" id="total${manu}">Total: $</div>`
 
-        let arrmanu = cart.filter((x)=> x.manufacturer===manu)
-        let manuamout = arrmanu.map((x) => x.finalTotal).reduce((x, y)=>x+y,0);
-        document.getElementById("total"+manu).innerHTML = "Total: "+manuamout+"$";
-
-    })
+        var arrmanu = cart.filter((x)=> x.manufacturer===manu);
+        var manuamount = arrmanu.map((x) => x.finalTotal).reduce((x, y)=>x+y,0);
+        document.getElementById("total"+manu).innerHTML = "Total: "+manuamount+"$";
+        console.log(manuamount);
+ 
+        if(manuamount ===0) {document.getElementById("incart"+manu).innerHTML = "";
+        document.getElementById("total"+manu).innerHTML = "";
+    } else return;
+    
+    }) 
+ 
     cart.forEach((product) => {
         let { id, name, manufacturer, price, numberOfUnits} = product;
 
@@ -440,25 +444,19 @@ document.getElementById(manufacturer).innerHTML += `
 </div>
 </div>
 </div>` })
-calculation()
 
-;
+calculation()
 
 };
 
-
 function calculation(){
-
 let amount = cart.map((x) => x.finalTotal).reduce((x, y)=>x+y,0);
-  
-    let totaleGrande = document.getElementById("grandTotal")
 
-
+    let totaleGrande = document.getElementById("grandTotal");
     totaleGrande.innerHTML = ("Grand total: " +amount+ " $");
 
     if(cart.length ===0) {cartOffer.innerHTML = "Your cart is empty."
     } else return;
-
 }
 
 function checkAll(myCheckBox) {
@@ -483,28 +481,3 @@ function showId(id) {
     console.log(id);
 }
 
-// `  <div class="incart__manu">
-//         <div class="incart">
-//             <input type="checkbox"/>
-//             <h4 class="incart__manufacturer">${manufacturer}</h4>
-//             </div>
-//         <div class="incart__grid">
-//         <div class="incart__product">
-//         <input type="checkbox"/>
-//         <div class="incart__name">${name}</div>
-//         <div class="incart__price">${price}$</div>
-//         <div class="incart__quantity" id="num${id}">${numberOfUnits}</div>
-//         <div class="incart__buttons">
-//         <button class="product__buttons--quantity" onClick="incrementCart(${id})">+</button>
-//         <button class="product__buttons--quantity" onClick="decrementCart(${id})">-</button>
-//         </div>
-//     </div>
-//     <div class="incart__delete" onClick="deleteItem(${id})"><ion-icon name="trash-outline"></ion-icon></div>
-    
-//     </div>
-//     </div>
-//     <div class="incart__footer" id="total${id}">Total: ${finalTotal} $</div>
-// `   ;
-
-// });
-  
