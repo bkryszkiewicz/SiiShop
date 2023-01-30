@@ -249,7 +249,6 @@ var uniqueManu = [];
 // DOM
 let storeOffer = document.querySelector(".store__offer");
 let cartOffer = document.querySelector(".incart__offer--container");
-
 //SHOP PART
 
 function renderProducts() {
@@ -328,7 +327,7 @@ function incrementCart(id) {
     search.numberOfUnits += 1;
     search.finalTotal = search.numberOfUnits * search.price;
 
-    updateCart(id)
+    updateCart(id);
 };
 
 function decrementCart(id) {
@@ -337,14 +336,13 @@ function decrementCart(id) {
 
     if (search.numberOfUnits === 1) return;
     else if(search === undefined) return;
-    else {
-        search.numberOfUnits -= 1;
-    };
+    else {search.numberOfUnits -= 1;};
+
     cart = cart.filter((x)=> x.numberOfUnits !== 0);
 
     search.finalTotal = search.numberOfUnits * search.price;
 
-    updateCart(id)
+    updateCart(id);
 };
 
 function updateCart(id) {
@@ -353,11 +351,7 @@ function updateCart(id) {
 
     document.getElementById("num" + search.id).innerHTML = search.numberOfUnits;
 
- 
-    // calculation();
     renderCartItems();
-    // console.log(cart);
-
 };
 
 function addToCart(id) {
@@ -377,13 +371,10 @@ function addToCart(id) {
         manu.forEach((element) =>{
             if(!uniqueManu.includes(element)) {uniqueManu.push(element)}
         }); 
-        // console.log(uniqueManu);
-        // console.log(cart);
         renderCartItems(id);
-    } else {
+            } else {
         search.numberOfUnits = search.numberOfUnits + item.numberOfUnits;
         search.finalTotal = search.numberOfUnits * search.price;
-
         renderCartItems(id);
     };
 }
@@ -391,16 +382,13 @@ function addToCart(id) {
 function deleteItem(id) {
     cart = cart.filter((product) =>
         product.id !== id);
-
-    // console.log(cart);
    
     renderCartItems()
-    // calculation()
 }
 
 // CART PART
 
-function renderCartItems(id) {
+function renderCartItems() {
     
     cartOffer.innerHTML = "";
     uniqueManu.forEach((manu)=>{
@@ -414,70 +402,57 @@ function renderCartItems(id) {
         <div id="${manu}"></div>
         <div class="incart__footer" id="total${manu}">Total: $</div>`
 
-        var arrmanu = cart.filter((x)=> x.manufacturer===manu);
-        var manuamount = arrmanu.map((x) => x.finalTotal).reduce((x, y)=>x+y,0);
-        document.getElementById("total"+manu).innerHTML = "Total: "+manuamount+"$";
-        console.log(manuamount);
- 
-        if(manuamount ===0) {document.getElementById("incart"+manu).innerHTML = "";
-        document.getElementById("total"+manu).innerHTML = "";
-    } else return;
-    
+        
+        manufacturerCalculation(manu);
     }) 
  
     cart.forEach((product) => {
         let { id, name, manufacturer, price, numberOfUnits} = product;
 
-document.getElementById(manufacturer).innerHTML += `
-<div class="incart__grid" "><div class="incart__product">
-<input type="checkbox" onchange="showId(${id})" id="checkbox${id}"/>
-<div class="incart__name">${name}</div>
-<div class="incart__price" id="${manufacturer}price">${price}</div>
-<div class="incart__quantity" id="num${id}">${numberOfUnits}</div>
-<div class="incart__buttons">
-<button class="product__buttons--quantity" onClick="incrementCart(${id})">+</button>
-<button class="product__buttons--quantity" onClick="decrementCart(${id})">-</button>
-</div>
-</div>
-<div class="incart__delete" onClick="deleteItem(${id})"><ion-icon name="trash-outline"></ion-icon></div>
+        document.getElementById(manufacturer).innerHTML += `
+        <div class="incart__grid" ">
+        <div class="incart__product">
+            <input type="checkbox" onclick="showId(${id})" id="checkbox${manufacturer}"/>
+        <div class="incart__name">${name}</div>
+        <div class="incart__price" id="${manufacturer}price">${price}</div>
+        <div class="incart__quantity" id="num${id}">${numberOfUnits}</div>
+        <div class="incart__buttons">
+            <button class="product__buttons--quantity" onClick="incrementCart(${id})">+</button>
+            <button class="product__buttons--quantity" onClick="decrementCart(${id})">-</button>
+        </div>
+        </div>
+        <div class="incart__delete" onClick="deleteItem(${id})"><ion-icon name="trash-outline"></ion-icon></div>
 
-</div>
-</div>
-</div>` })
+        </div>
+        </div>
+        </div>` })
 
-calculation()
+        calculationGrandTotal()
 
+        
 };
 
-function calculation(){
-let amount = cart.map((x) => x.finalTotal).reduce((x, y)=>x+y,0);
+function manufacturerCalculation(manu) {
+    let arrmanu = cart.filter((x)=> x.manufacturer===manu);
+    let manuamount = arrmanu.map((x) => x.finalTotal).reduce((x, y)=>x+y,0);
+    let totalManufacturer = document.getElementById("total"+manu);
+    
+    totalManufacturer.innerHTML = "Total: "+manuamount+"$";
 
+    if(manuamount ===0) {document.getElementById("incart"+manu).innerHTML = "";
+    totalManufacturer.innerHTML = "";
+    } else return;
+}
+
+function calculationGrandTotal(){
+    let amount = cart.map((x) => x.finalTotal).reduce((x, y)=>x+y,0);
     let totaleGrande = document.getElementById("grandTotal");
+
     totaleGrande.innerHTML = ("Grand total: " +amount+ " $");
 
     if(cart.length ===0) {cartOffer.innerHTML = "Your cart is empty."
     } else return;
 }
 
-function checkAll(myCheckBox) {
 
-var checkboxes = [document.querySelectorAll("input [type='checkbox']")];
-
-if (myCheckBox.checked ==true ) {
-    checkboxes.forEach((checkbox)=>
-    checkbox.checked = true);
-
-    console.log(checkboxes)
-    console.log("true");
-} else {checkboxes.forEach((checkbox)=>
-    checkbox.checked = false)
-    console.log(checkboxes);
-}
-}
-
-function showId(id) {
-    // let search = cart.find((product) =>
-    // product.id === id);
-    console.log(id);
-}
-
+// CHECKBOXES
