@@ -14,6 +14,12 @@ ion-icon {
   font-size: 2.5rem;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .main-header {
   color: #6d6f73;
   font-size: 2rem;
@@ -139,6 +145,9 @@ ion-icon {
   font-size: 0.875rem;
   font-style: italic;
   margin: 0px;
+}
+.incart__input {
+  max-width: 30px;
 }
 .incart__offer--container {
   max-height: 400px;
