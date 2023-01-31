@@ -1,0 +1,23 @@
+<div class="incart__manu">
+         <div class="incart">
+             <input type="checkbox"/>
+             <h4 class="incart__manufacturer">${manufacturer}</h4>
+             </div>
+         <div class="incart__grid">
+         <div class="incart__product">
+         <input type="checkbox"/>
+         <div class="incart__name">${name}</div>
+         <div class="incart__price">${price}$</div>
+         <div class="incart__quantity" id="num${id}">${numberOfUnits}</div>
+         <div class="incart__buttons">
+         <button class="product__buttons--quantity" onClick="incrementCart(${id})">+</button>
+         <button class="product__buttons--quantity" onClick="decrementCart(${id})">-</button>
+         </div>
+     </div>
+     <div class="incart__delete" onClick="deleteItem(${id})"><ion-icon name="trash-outline"></ion-icon></div>
+        
+     </div>
+     </div>
+     <div class="incart__footer" id="total${id}">Total: ${finalTotal} $</div>
+
+</div>

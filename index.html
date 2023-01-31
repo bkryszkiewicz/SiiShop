@@ -6,17 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles/style.css" />
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
-    <ion-icon name="storefront"></ion-icon>
-    <h1 class="header">The shop</h1>
-    <ion-icon name="cart"></ion-icon>
-    <h1 class="header">The cart</h1>
+    <div class="store">
+    <div class="store__products">
+    <div class="store__header">
+        <ion-icon name="storefront"></ion-icon>
+        <h1 class="main-header">The shop</h1>
+    </div>
 
+    <div class="store__offer">
+        <!-- renderProducts() -->
+    </div>
+
+    </div>
+    <div class="store__cart">
+    <div class="store__header--cart">
+        <ion-icon name="cart"></ion-icon>
+        <h1 class="main-header">The cart</h1>
+    </div>
+          <!-- renderCartItems() -->
+          <div class="incart__offer--container">
+            Your cart is empty.
+         <!-- end of product  -->
+    </div>
+
+<div class="incart__footer" id="grandTotal">Grand Total: </div>
+</div>
+  
 
 <!-- IKONY -->
+
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+<script src="app.js" ></script>
+
 </body>
 
 </html>
