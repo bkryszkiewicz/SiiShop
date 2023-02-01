@@ -54,7 +54,7 @@ input::-webkit-inner-spin-button {
   align-items: center;
   gap: 1rem;
   outline: 1px solid #6d6f73;
-  padding: 0px 25px;
+  padding: 0em 2em;
 }
 .store__header--cart {
   display: flex;
@@ -62,14 +62,14 @@ input::-webkit-inner-spin-button {
   justify-content: flex-end;
   gap: 1rem;
   outline: 1px solid #6d6f73;
-  padding: 0px 25px;
+  padding: 0em 2em;
 }
 .store__offer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
   gap: 30px 30px;
-  padding: 30px 30px;
+  padding: 2.5em 2.5em;
 }
 .store__cart {
   color: #6d6f73;
@@ -87,14 +87,14 @@ input::-webkit-inner-spin-button {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 10px;
-  padding: 0px 10px;
+  padding: 0px 0.7em;
 }
 .product__data {
   display: grid;
 }
 .product__name {
   font-size: 1rem;
-  margin: 15px 0px 0px 0px;
+  margin: 1em 0em 0em 0em;
 }
 .product__manufacturer {
   font-size: 0.875rem;
@@ -102,7 +102,7 @@ input::-webkit-inner-spin-button {
   font-style: italic;
 }
 .product__description {
-  margin: 0px 15px 15px 15px;
+  margin: 0em 1em 1em 1em;
 }
 .product__menu {
   display: grid;
@@ -117,7 +117,7 @@ input::-webkit-inner-spin-button {
   display: grid;
 }
 .product__buttons--quantity {
-  padding: 5px 10px;
+  padding: 0.2em 0.7em;
   cursor: pointer;
   outline: 1px solid #6d6f73;
   border: none;
@@ -130,7 +130,7 @@ input::-webkit-inner-spin-button {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px;
+  padding: 0.7em;
 }
 .incart__grid {
   display: grid;
@@ -148,11 +148,12 @@ input::-webkit-inner-spin-button {
 }
 .incart__input {
   max-width: 30px;
+  border: 0px;
 }
 .incart__offer--container {
-  max-height: 400px;
+  max-height: 450px;
   overflow-y: auto;
-  margin: 10px;
+  margin: 0.7em;
   outline: 1px solid black;
   background-color: white;
 }
@@ -160,10 +161,10 @@ input::-webkit-inner-spin-button {
   background-color: white;
   display: grid;
   align-items: center;
-  grid-template-columns: 0.5fr 3fr 1fr 0.25fr 0.25fr;
+  grid-template-columns: 3fr 3fr 0.25fr 0.25fr;
   outline: 1px solid black;
   gap: 10px;
-  margin-inline: 10px;
+  margin-inline: 0.7em;
 }
 .incart__buttons {
   display: grid;
@@ -173,11 +174,11 @@ input::-webkit-inner-spin-button {
   background-color: aliceblue;
   font-size: 1rem;
   outline: 1px solid black;
-  margin-top: 10px;
+  margin-top: 0.7em;
 }
 .incart__delete {
   background-color: white;
   outline: 1px solid black;
-  margin-right: 10px;
+  margin-right: 0.7em;
   cursor: pointer;
 }/*# sourceMappingURL=style.css.map */

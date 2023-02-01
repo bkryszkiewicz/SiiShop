@@ -243,8 +243,8 @@ const shopItemsData = [
     },
 ];
 let cart = [];
-let manu = [];
 let uniqueManu = [];
+
 // DOM
 let storeOffer = document.querySelector(".store__offer");
 let cartOffer = document.querySelector(".incart__offer--container");
@@ -310,9 +310,9 @@ function addToCart(id) {
             finalTotal: cartItem.price * quantity,
         })
 
-        manu.push(cartItem.manufacturer)
-        manu.forEach((element) =>{
-        if(!uniqueManu.includes(element)) {uniqueManu.push(element)};})
+        // manu.push(cartItem.manufacturer)
+        // manu.forEach((element) =>{
+        // if(!uniqueManu.includes(element)) {uniqueManu.push(element)};})
     }
 
     input.value = 1;
@@ -364,7 +364,7 @@ function logo(id){
     let search = cart.find((product) =>
     product.id === id);
 
-    (value>1)? console.log("super") : value=1;
+    (value>1)? null: value=search.numberOfUnits;
     search.numberOfUnits = value;
     search.finalTotal = search.numberOfUnits * search.price;
     renderCartItems()
@@ -373,18 +373,24 @@ function logo(id){
 function deleteItem(id) {
     cart = cart.filter((product) =>
         product.id !== id);
-   
     renderCartItems()
 }
 // CART PART
+function renderManufacturer(){
+    uniqueManu = [];
+    const manufacturer = cart.map(product => `${product.manufacturer}`);
+    manufacturer.forEach((manufacturer)=>{
+        (uniqueManu.includes(manufacturer))? null:uniqueManu.push(manufacturer);
+    })
+}
 function renderCartItems() {
-    
-    cartOffer.innerHTML = "";
+    cartOffer.innerHTML = ""; 
+    renderManufacturer();
+
     uniqueManu.forEach((manu)=>{
 
         cartOffer.innerHTML += `  <div class="incart__manu" id="incart${manu}">
         <div class="incart">
-            <input type="checkbox" id="optionAll${manu}" onClick="checkAll(this)"/>
             <h4 class="incart__manufacturer" >${manu}</h4>
         </div>
         </div> 
@@ -401,7 +407,6 @@ function renderCartItems() {
         document.getElementById(manufacturer).innerHTML += `
         <div class="incart__grid" ">
         <div class="incart__product">
-            <input type="checkbox" onclick="showId(${id})" id="checkbox${manufacturer}"/>
         <div class="incart__name">${name}</div>
         <div class="incart__price" id="${manufacturer}price">${price} $</div>
         <div class="incart__quantity" ><input class="incart__input"type="number" id="num${id}" value="${numberOfUnits}" oninput="logo(${id})" min="0" ></div>
