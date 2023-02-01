@@ -358,7 +358,7 @@ function decrementCart(id) {
     renderCartItems()
 };
 
-function logo(id){
+function incartInput(id){
     let input = document.getElementById("num"+id);
     let value = Number(input.value);
     let search = cart.find((product) =>
@@ -409,7 +409,7 @@ function renderCartItems() {
         <div class="incart__product">
         <div class="incart__name">${name}</div>
         <div class="incart__price" id="${manufacturer}price">${price} $</div>
-        <div class="incart__quantity" ><input class="incart__input"type="number" id="num${id}" value="${numberOfUnits}" oninput="logo(${id})" min="0" ></div>
+        <div class="incart__quantity" ><input class="incart__input"type="number" id="num${id}" value="${numberOfUnits}" oninput="incartInput(${id})" min="0" ></div>
         <div class="incart__buttons" >
             <button class="product__buttons--quantity" onClick="incrementCart(${id})">+</button>
             <button class="product__buttons--quantity" onClick="decrementCart(${id})">-</button>
