@@ -242,10 +242,9 @@ const shopItemsData = [
         image: "./img/img30.jpg",
     },
 ];
-let basket = [];
 let cart = [];
-let manu = [];
-var uniqueManu = [];
+let uniqueManu = [];
+
 // DOM
 let storeOffer = document.querySelector(".store__offer");
 let cartOffer = document.querySelector(".incart__offer--container");
@@ -266,12 +265,12 @@ function renderProducts() {
             
             <div class="product__menu">
                 <div class="centered-item">${price}$</div>
-                <div class="centered-item quantity" id="${id}">0</div>
+              <input type="number" class="centered-item quantity" id="${id}" value="1" min="0" max="200" step="1"/>
             <div class="product__buttons">
-                <button class="product__buttons--quantity" onClick="increment(${id})">+</button>
+                <button class="product__buttons--quantity" id="increment" onClick="increment(${id})">+</button>
                 <button class="product__buttons--quantity" onClick="decrement(${id})">-</button>
             </div>
-            <div class="product__buttons--cart-btn centered-item" onClick="addToCart(${id})"> <ion-icon name="cart"></ion-icon>
+            <div class="product__buttons--cart-btn centered-item" id="decrement" onClick="addToCart(${id})"> <ion-icon name="cart"></ion-icon>
             </div>
             </div>
             </div>
@@ -281,121 +280,117 @@ function renderProducts() {
 renderProducts();
 
 // QUANTITY SHOP
+
 function increment(id) {
-    let search = basket.find((product) =>
-        product.id === id);
-
-    if (search === undefined) {
-        const item = shopItemsData.find((product) => product.id === id);
-
-        basket.push({
-            ...item,
-            numberOfUnits: 1,
-        });
-    } else {
-        search.numberOfUnits += 1;
-    }
-    update(id)
+    let input = document.getElementById(id);
+    let value = input.value;
+    value++;
+    input.value = value;
 };
-
 function decrement(id) {
-    let search = basket.find((product) =>
-        product.id === id);
+    let input = document.getElementById(id);
+    let value = input.value;
+    (value>0)? value-- : 0;
+    input.value = value;
+};
 
-    if (search.numberOfUnits === 0) return;
-    else {
-        search.numberOfUnits -= 1;
+function addToCart(id) {
+    let input = document.getElementById(id);
+    let quantity = Number(input.value);
+    if (input.value<=0) alert("ZABEZPIECZONKO");
+
+    else if(cart.some((product) => product.id === id)) {
+        updateNumbers(id);
+        
+    } else {
+        const cartItem = shopItemsData.find((product) => product.id === id);
+        cart.push({
+            ...cartItem,
+            numberOfUnits: quantity,
+            finalTotal: cartItem.price * quantity,
+        })
+
+        // manu.push(cartItem.manufacturer)
+        // manu.forEach((element) =>{
+        // if(!uniqueManu.includes(element)) {uniqueManu.push(element)};})
     }
 
-    update(id)
-};
-
-function update(id) {
-    let search = basket.find((product) =>
-        product.id === id);
-
-    document.getElementById(id).innerHTML = search.numberOfUnits;
-   
-};
-
-// QUANITITY CART
-
-function incrementCart(id) {
-    let search = cart.find((product) =>
-        product.id === id);
-
-    search.numberOfUnits += 1;
-    search.finalTotal = search.numberOfUnits * search.price;
-
-    updateCart(id);
-};
-
-function decrementCart(id) {
-    let search = cart.find((product) =>
-        product.id === id);
-
-    if (search.numberOfUnits === 1) return;
-    else if(search === undefined) return;
-    else {search.numberOfUnits -= 1;};
-
-    cart = cart.filter((x)=> x.numberOfUnits !== 0);
-
-    search.finalTotal = search.numberOfUnits * search.price;
-
-    updateCart(id);
-};
-
-function updateCart(id) {
-    let search = cart.find((product) =>
-        product.id === id);
-
-    document.getElementById("num" + search.id).innerHTML = search.numberOfUnits;
+    input.value = 1;
 
     renderCartItems();
 };
 
-function addToCart(id) {
+function updateNumbers(id) {
+    let input = document.getElementById(id);
     let search = cart.find((product) =>
-        product.id === id,);
-    let item = basket.find((product) =>
+    product.id === id);
+    quantity = Number(input.value);
+
+    search.numberOfUnits = quantity + search.numberOfUnits;
+    search.finalTotal = search.numberOfUnits * search.price;
+}
+// QUANITITY CART
+
+function incrementCart(id) {
+    let input = document.getElementById("num"+id);
+    let value = input.value;
+    let search = cart.find((product) =>
+    product.id === id);
+
+    value++;
+    search.numberOfUnits = value;
+    search.finalTotal = search.numberOfUnits * search.price;
+    
+    input.value = value;
+    renderCartItems()
+};
+function decrementCart(id) {
+    let input = document.getElementById("num"+id);
+    let value = input.value;
+    let search = cart.find((product) =>
         product.id === id);
 
-    if (item.numberOfUnits === 0) return;
-    else if (search === undefined) {
-        cart.push({
-            ...item,
-            finalTotal: item.price * item.numberOfUnits,
-        })
+    (value>1)? value-- : 0;
+    search.numberOfUnits = value;
+    search.finalTotal = search.numberOfUnits * search.price;
 
-        manu.push(item.manufacturer)
-        manu.forEach((element) =>{
-            if(!uniqueManu.includes(element)) {uniqueManu.push(element)}
-        }); 
-        renderCartItems(id);
-            } else {
-        search.numberOfUnits = search.numberOfUnits + item.numberOfUnits;
-        search.finalTotal = search.numberOfUnits * search.price;
-        renderCartItems(id);
-    };
+    input.value = value;
+    renderCartItems()
+};
+
+function logo(id){
+    let input = document.getElementById("num"+id);
+    let value = Number(input.value);
+    let search = cart.find((product) =>
+    product.id === id);
+
+    (value>1)? null: value=search.numberOfUnits;
+    search.numberOfUnits = value;
+    search.finalTotal = search.numberOfUnits * search.price;
+    renderCartItems()
 }
 
 function deleteItem(id) {
     cart = cart.filter((product) =>
         product.id !== id);
-   
     renderCartItems()
 }
-
 // CART PART
-
+function renderManufacturer(){
+    uniqueManu = [];
+    const manufacturer = cart.map(product => `${product.manufacturer}`);
+    manufacturer.forEach((manufacturer)=>{
+        (uniqueManu.includes(manufacturer))? null:uniqueManu.push(manufacturer);
+    })
+}
 function renderCartItems() {
-    
-    cartOffer.innerHTML = "";
+    cartOffer.innerHTML = ""; 
+    renderManufacturer();
+
     uniqueManu.forEach((manu)=>{
 
         cartOffer.innerHTML += `  <div class="incart__manu" id="incart${manu}">
         <div class="incart">
-            <input type="checkbox" id="optionAll${manu}" onClick="checkAll(this)"/>
             <h4 class="incart__manufacturer" >${manu}</h4>
         </div>
         </div> 
@@ -412,11 +407,10 @@ function renderCartItems() {
         document.getElementById(manufacturer).innerHTML += `
         <div class="incart__grid" ">
         <div class="incart__product">
-            <input type="checkbox" onclick="showId(${id})" id="checkbox${manufacturer}"/>
         <div class="incart__name">${name}</div>
-        <div class="incart__price" id="${manufacturer}price">${price}</div>
-        <div class="incart__quantity" id="num${id}">${numberOfUnits}</div>
-        <div class="incart__buttons">
+        <div class="incart__price" id="${manufacturer}price">${price} $</div>
+        <div class="incart__quantity" ><input class="incart__input"type="number" id="num${id}" value="${numberOfUnits}" oninput="logo(${id})" min="0" ></div>
+        <div class="incart__buttons" >
             <button class="product__buttons--quantity" onClick="incrementCart(${id})">+</button>
             <button class="product__buttons--quantity" onClick="decrementCart(${id})">-</button>
         </div>
@@ -427,8 +421,7 @@ function renderCartItems() {
         </div>
         </div>` })
 
-        calculationGrandTotal()
-
+        calculationGrandTotal();
         
 };
 
@@ -439,7 +432,7 @@ function manufacturerCalculation(manu) {
     
     totalManufacturer.innerHTML = "Total: "+manuamount+"$";
 
-    if(manuamount ===0) {document.getElementById("incart"+manu).innerHTML = "";
+    if(manuamount <=0) {document.getElementById("incart"+manu).innerHTML = "";
     totalManufacturer.innerHTML = "";
     } else return;
 }
@@ -454,5 +447,3 @@ function calculationGrandTotal(){
     } else return;
 }
 
-
-// CHECKBOXES

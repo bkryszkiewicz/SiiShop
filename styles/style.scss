@@ -20,7 +20,11 @@ body {
 ion-icon {
     font-size: convertPxToRem(40);
 }
-
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .main-header {
     color: #6d6f73;
     font-size: convertPxToRem(32);
@@ -56,7 +60,7 @@ ion-icon {
         align-items: center;
         gap: 1rem;
         outline: 1px solid $primary-color;
-        padding: 0px 25px;
+        padding: 0em 2em;
 
         &--cart {
             display: flex;
@@ -64,7 +68,7 @@ ion-icon {
             justify-content: flex-end;
             gap: 1rem;
             outline: 1px solid $primary-color;
-            padding: 0px 25px;
+            padding: 0em 2em;
         }
     }
 
@@ -73,7 +77,7 @@ ion-icon {
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: auto;
         gap: 30px 30px;
-        padding: 30px 30px;
+        padding: 2.5em 2.5em;
     }
 
     &__cart {
@@ -94,7 +98,7 @@ ion-icon {
         display: grid;
         grid-template-columns: 1fr 2fr;
         gap: 10px;
-        padding: 0px 10px;
+        padding: 0px 0.7em;
     }
 
     &__data {
@@ -103,7 +107,7 @@ ion-icon {
 
     &__name {
         font-size: convertPxToRem(16);
-        margin: 15px 0px 0px 0px;
+        margin: 1em 0em 0em 0em;
     }
 
     &__manufacturer {
@@ -113,7 +117,7 @@ ion-icon {
     }
 
     &__description {
-        margin: 0px 15px 15px 15px;
+        margin: 0em 1em 1em 1em;
     }
 
     &__menu {
@@ -131,7 +135,7 @@ ion-icon {
         display: grid;
 
         &--quantity {
-            padding: 5px 10px;
+            padding: 0.2em 0.7em;
             cursor: pointer;
             outline: 1px solid $primary-color;
             border: none;
@@ -149,7 +153,7 @@ ion-icon {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px;
+    padding: 0.7em;
 
     &__grid {
         display: grid;
@@ -167,11 +171,15 @@ ion-icon {
         font-style: italic;
         margin: 0px;
     }
+    &__input {
+        max-width: 30px;
+        border: 0px;
+    }
 
     &__offer--container {
-        max-height: 400px;
+        max-height: 450px;
         overflow-y: auto;
-        margin: 10px;
+        margin: 0.7em;
         outline: 1px solid black;
         background-color: $background-color;
     }
@@ -180,10 +188,10 @@ ion-icon {
         background-color: $background-color;
         display: grid;
         align-items: center;
-        grid-template-columns: 0.5fr 3fr 1fr 0.25fr 0.25fr;
+        grid-template-columns: 3fr 3fr 0.25fr 0.25fr;
         outline: 1px solid black;
         gap: 10px;
-        margin-inline: 10px;
+        margin-inline: 0.7em;
     }
     &__buttons {
         display: grid;
@@ -194,13 +202,13 @@ ion-icon {
         background-color: aliceblue;
         font-size: convertPxToRem(16);
         outline: 1px solid black;
-        margin-top: 10px;
+        margin-top: 0.7em;
         @extend .centered-item;
     }
     &__delete {
         background-color: $background-color;
         outline: 1px solid black;
-        margin-right: 10px;
+        margin-right: 0.7em;
         cursor: pointer;
         @extend .centered-item;
     }
